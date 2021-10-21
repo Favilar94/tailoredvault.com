@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create User</title>
+  </head>
+  <body>
+    <h1>Upload File</h1>
+    <form action="/files" method="POST">
+      <h3>username</h3><input type="text" name="username" />
+      <h3>userID</h3><input type="text" name="userID" />
+      <h3>pryvacyID</h3><input type="text" name="privacyID" />
+      <h3>customshare</h3><input type="text" name="customShare" />
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
+
+
+user_name varchar(20),
+about text,
+member_since timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+last_conection timestamp with time zone NOT NULL,
+MB_used real,
+user_password varchar(72) NOT NULL,
+first_name varchar(100) NOT NULL,
+last_name varchar(100) NOT NULL,
+email varchar(100) NOT NULL,
+email_validated boolean DEFAULT false,
+plan_id smallint NOT NULL,
+rol_id smallint NOT NULL,
+privacy_id smallint NOT NULL,
