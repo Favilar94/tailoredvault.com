@@ -1,7 +1,6 @@
 import {Schema, model} from 'mongoose'
 
 const noteSchema = new Schema({
-    owner: Number,
     title: String,
     content: String
 },{

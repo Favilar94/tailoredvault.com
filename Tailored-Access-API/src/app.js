@@ -2,10 +2,13 @@ import express from "express";
 import morgan from "morgan";
 import pkg from "../package.json";
 import filesRoutes from "./routes/files.routes";
+import authRoutes from "./routes/auth.routes";
 
 const path = require("path");
 const app = express();
 const fs = require("fs");
+
+const bodyParser = require("body-parser");
 
 //Settings
 app.set("pkg", pkg);
@@ -15,6 +18,9 @@ app.set("views", path.join(__dirname, "views")); //Only to debug
 app.set("view engine", "ejs"); //Only to debug
 
 // middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());   
+
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -58,10 +64,16 @@ app.get("/apifoto", (req, res) => { //Only to debug
 }); //Only to debug
 
 app.get("/userform", (req, res) => { //Only to debug
-  res.render("index"); //Only to debug
+  res.render("userform"); //Only to debug
 }); //Only to debug
 
-app.use("/files", filesRoutes);
+app.get("/signin", (req, res) => { //Only to debug
+  res.render("signin"); //Only to debug
+}); //Only to debug
+
+app.use("/api/files", filesRoutes);
+app.use("/api/auth", authRoutes);
+
 
 //Static files
 app.use(express.static(path.join(__dirname, "public")));
