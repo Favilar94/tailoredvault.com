@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src --out-dir build",
     "dev": "nodemon src/index.js --exec babel-node",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "server": "babel-node src/index.js"
   },
   "keywords": [],
   "author": "Alejandro Favila",
