@@ -60,7 +60,9 @@ export const uploadFile = async (req, res) => {
                         } else{
                             spectRatio = resizeImage.height/resizeImage.width;
                             // insertar En SQL
-                            const values = [fileName,mbSize,fileExtension,description,filePath,thumbnailPath,spectRatio,userID,privacyID];
+                            const staticPath = config.WEB_HOSTNAME + "/" + userName + "/" + fileName;
+                            const staticThumbnailPath = config.WEB_HOSTNAME + "/" + userName + "/" + "thumbnails" + fileName;
+                            const values = [fileName,mbSize,fileExtension,description,staticPath,staticThumbnailPath,spectRatio,userID,privacyID];
                             try{
                                 const response = await pool.query('INSERT INTO Files (file_name,MB_size, file_extension, description, original_path, thumbnail_path, spect_ratio, user_id, privacy_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);',values)
                             }catch (errorSQL){
@@ -80,13 +82,23 @@ export const uploadFile = async (req, res) => {
 }
 
 export const getFiles = async (req, res) => {
-    const response = await pool.query('SELECT * FROM Files WHERE user_id = $1 AND privacy_id >= $2;', [req.params.userID,req.relationWithUser]);
-    res.status(200).json(response.rows);
+    try{
+        const response = await pool.query('SELECT * FROM Files WHERE user_id = $1 AND privacy_id >= $2;', [req.params.userID,req.relationWithUser]);
+        res.status(200).json(response.rows);
+    }catch(err){
+        res.status(404).json({ message: "Error" });
+    }
+
 }
 
 export const getFileById = async (req, res) => {
-    const response = await pool.query('SELECT * FROM Files WHERE file_id = $1;', [req.params.fileID]);
-    res.status(200).json(response.rows);
+    try{
+        const response = await pool.query('SELECT * FROM Files WHERE file_id = $1;', [req.params.fileID]);
+        res.status(200).json(response.rows);
+    }catch(err){
+        res.status(404).json({ message: "Error" });
+    }
+
 }
 
 export const updateFileById = async (req, res) => {
@@ -94,8 +106,13 @@ export const updateFileById = async (req, res) => {
     const {description, privacyID} = req.body;
     const fileID = req.params.fileID;
 
-    const response = await pool.query('UPDATE Files SET description = $1, privacy_id = $2 WHERE file_id = $3;', [description, privacyID,fileID]);
-    res.status(204).json({ message: "Updated" });
+    try{
+        const response = await pool.query('UPDATE Files SET description = $1, privacy_id = $2 WHERE file_id = $3;', [description, privacyID,fileID]);
+        res.status(204).json({ message: "Updated" });
+    }catch(err){
+        res.status(404).json({ message: "Error" });
+    }
+
 }
 
 export const deleteFileById = async (req, res) => {

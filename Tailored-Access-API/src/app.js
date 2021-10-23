@@ -5,13 +5,14 @@ import filesRoutes from "./routes/files.routes";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import relationShipsRoutes from "./routes/relationships.routes";
+require('dotenv').config()
 
 const path = require("path");
 const app = express();
 
 //Settings
 app.set("pkg", pkg);
-app.set("port", 3001);
+app.set("port", process.env.PORT_BACKEND);
 
 
 

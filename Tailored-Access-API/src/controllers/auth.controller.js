@@ -21,6 +21,7 @@ export const signUp = async (req, res) => {
 }
 export const signIn = async (req, res) => {
     const {email, user_password} = req.body;
+    
     const responseUserID = await pool.query("SELECT user_id FROM users WHERE email = $1 AND user_password = crypt($2, user_password)",[email.toLowerCase(),user_password]);
     let userID = responseUserID.rows[0];
 
