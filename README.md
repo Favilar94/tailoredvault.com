@@ -1,9 +1,13 @@
 # tailoredvault.com
 ### Files Vault, Upload and share files
+---
+### Source Code at https://github.com/Favilar94/tailoredvault.com
+---
 ### API corriendo en maquina remota tailoredvault.com (ingresar con llave)
 
 ### Rutas API https://www.tailoredvault.com/api
 
+Para token usar x-access-token header
 ---
 #### auth  https://www.tailoredvault.com/api/auth  
 ##### Registrar un usuario Nuevo (No permite validar el correo, es requerido que un admin lo actualice)
