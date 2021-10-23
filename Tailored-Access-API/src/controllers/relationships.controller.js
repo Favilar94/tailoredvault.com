@@ -1,20 +1,19 @@
 import pool from '../database'
 
 export const createRelation = async (req, res) => {
-    const {user_ID1,user_ID2,status} = req.body;
+    const {userID1,userID2,status} = req.body;
     try{
         if (req.relationWithUser == 0){
-            const values1 = [user_ID1,user_ID2,status];
-            const values2 = [user_ID2,user_ID1,status];
-
+            const values1 = [userID1,userID2,status];
+            const values2 = [userID2,userID1,status];
             const response = await pool.query("INSERT INTO Relationships (user_ID1,user_ID2,status) VALUES($1,$2,$3);",values1);
             const response2 = await pool.query("INSERT INTO Relationships (user_ID1,user_ID2,status) VALUES($1,$2,$3);",values2);
 
             res.status(200).json({ message: "Created" });
         }else{
-            if(user_ID1==req.userID || user_ID2 == req.userID){
-                const values1 = [user_ID1,user_ID2];
-                const values2 = [user_ID2,user_ID1];
+            if(userID1==req.userID || userID2 == req.userID){
+                const values1 = [userID1,userID2];
+                const values2 = [userID2,userID1];
                 const response = await pool.query("INSERT INTO Relationships (user_ID1,user_ID2,status) VALUES($1,$2);",values1);
                 const respons2 = await pool.query("INSERT INTO Relationships (user_ID1,user_ID2,status) VALUES($1,$2);",values2);
 

@@ -243,12 +243,7 @@
 				],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/files/user/1",
@@ -281,12 +276,7 @@
 				],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/files/1",
@@ -315,7 +305,7 @@
 				"header": [
 					{
 						"key": "x-access-token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJpYXQiOjE2MzQ5NDkxNzQsImV4cCI6MTYzNTAzNTU3NH0.FkInXsrc5WHiLyGzYCmuGO3e_f3u6jVzBaKTeMDrdy0",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2MzUwMTIxOTQsImV4cCI6MTYzNTA5ODU5NH0.GGJDFlS6o2ol0UCGJOA7pMVWQasPPAOKz8MNhUPQCoU",
 						"type": "text"
 					}
 				],
@@ -329,7 +319,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://www.tailoredvault.com/api/user/3",
+					"raw": "https://www.tailoredvault.com/api/user/5",
 					"protocol": "https",
 					"host": [
 						"www",
@@ -339,7 +329,7 @@
 					"path": [
 						"api",
 						"user",
-						"3"
+						"5"
 					]
 				}
 			},
@@ -355,18 +345,13 @@
 				"header": [
 					{
 						"key": "x-access-token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2MzUwMDg3OTAsImV4cCI6MTYzNTA5NTE5MH0._f9rVr4oOqxa3dMEfuW8zbOeHfKAzdiYa86N7b4yc-c",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2MzUwMTEzMDEsImV4cCI6MTYzNTA5NzcwMX0.7302dVDtlmpoRFhyyFHFneOnz8Qjfu-i8zV7NXpUqyg",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/user/",
@@ -398,12 +383,7 @@
 				],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/user/4",
@@ -417,6 +397,59 @@
 						"api",
 						"user",
 						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Createrelationships",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE2MzUwMTIxOTQsImV4cCI6MTYzNTA5ODU5NH0.GGJDFlS6o2ol0UCGJOA7pMVWQasPPAOKz8MNhUPQCoU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userID1",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "userID2",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "true",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tailoredvault.com/api/relation/",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tailoredvault",
+						"com"
+					],
+					"path": [
+						"api",
+						"relation",
+						""
 					]
 				}
 			},
@@ -438,12 +471,7 @@
 				],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/relation/user/1",
@@ -479,15 +507,10 @@
 					"urlencoded": [
 						{
 							"key": "status",
-							"value": "false",
+							"value": "true",
 							"type": "text"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "https://www.tailoredvault.com/api/relation/2",
