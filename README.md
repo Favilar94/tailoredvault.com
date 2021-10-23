@@ -1,10 +1,10 @@
 # tailoredvault.com
 ### Files Vault, Upload and share files
-
 ### API corriendo en maquina remota tailoredvault.com (ingresar con llave)
 
 ### Rutas API https://www.tailoredvault.com/api
 
+---
 #### auth  https://www.tailoredvault.com/api/auth  
 ##### Registrar un usuario Nuevo (No permite validar el correo, es requerido que un admin lo actualice)
 post www.tailoredvault.com/api/auth/signup/
@@ -14,7 +14,7 @@ body: user_name,about,user_password,first_name,last_name,email,plan_id,rol_id,pr
 post www.tailoredvault.com/api/auth/singin/
 body: user_name,about,user_password
 
-
+---
 #### files https://www.tailoredvault.com/api/files
 ##### Subir Archivos, el usuario tiene que tener permisos de escritura
 post https://www.tailoredvault.com/api/files/
@@ -34,7 +34,7 @@ body: description, privacyID
 delete https://www.tailoredvault.com/api/files/:fileID
 
 
-
+---
 #### user https://www.tailoredvault.com/api/user
 ##### Crea usuario, se tiene que ser admin
 post https://www.tailoredvault.com/api/user/
@@ -53,9 +53,8 @@ body: about,first_name,last_name,email_validated,plan_id,rol_id,privacy_id
 ##### Elimina usuario, se valida que sea el dueño o Admin
 delete https://www.tailoredvault.com/api/user/:UserID
 
-
+---
 #### relationships https://www.tailoredvault.com/api/relation/
-
 ##### Crea relacion entre usuarios, se tiene que ser admin o que uno de los dos sea parte de la relacion (solo admin puede insertar status, true or false)
 post https://www.tailoredvault.com/api/relation/
 body: user_ID1,user_ID2,status
