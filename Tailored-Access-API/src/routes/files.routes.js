@@ -1,16 +1,16 @@
 import { Router } from "express";
-const router = Router();
 
 import * as filesCtrl from "../controllers/files.controller";
 import {authJwt} from "../middlewares";
+const router = Router();
 
-router.post('/', [authJwt.verifyToken, authJwt.isOwner], filesCtrl.uploadFile);
-router.post('/newnote', [authJwt.verifyToken, authJwt.isOwner], filesCtrl.createNote);
+router.post('/', [authJwt.verifyToken, authJwt.userRole, authJwt.canCreate], filesCtrl.uploadFile); // Upload files
 
-router.get('/user/:userID', [authJwt.verifyToken,authJwt.isOwner, authJwt.isAdmin, authJwt.isVisitor], filesCtrl.getFiles);
-router.get('/:fileID', [authJwt.verifyToken, authJwt.isOwner, authJwt.isAdmin, authJwt.isVisitor], filesCtrl.getFileById);
+router.get('/:fileID', [authJwt.verifyToken, authJwt.userRole, authJwt.canRead, authJwt.isAdmin, authJwt.isOwner, authJwt.isVisitor,authJwt.checkAccess], filesCtrl.getFileById); // Load file
 
-router.put('/:fileID', [authJwt.verifyToken, authJwt.isOwner, authJwt.isAdmin], filesCtrl.updateFileById);
-router.delete('/:fileID', [authJwt.verifyToken, authJwt.isOwner, authJwt.isAdmin], filesCtrl.deleteFileById);
+router.get('/user/:userID', [authJwt.verifyToken, authJwt.userRole, authJwt.canRead, authJwt.isAdmin, authJwt.isOwnerProfile, authJwt.isVisitorProfile,authJwt.checkAccess], filesCtrl.getFiles); //Load all files from user
+
+router.put('/:fileID', [authJwt.verifyToken, authJwt.userRole, authJwt.canUpdate, authJwt.isAdmin, authJwt.isOwner,authJwt.checkAccess], filesCtrl.updateFileById); //Update file
+router.delete('/:fileID', [authJwt.verifyToken, authJwt.userRole, authJwt.canDelete, authJwt.isAdmin,authJwt.isOwner,authJwt.checkAccess], filesCtrl.deleteFileById); //Delete file
 
 export default router;

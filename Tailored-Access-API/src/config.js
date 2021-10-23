@@ -1,3 +1,4 @@
 export default {
-    SECRET: 'Alejandro ia-center'
+    SECRET: 'Alejandro ia-center',
+    savePath: "C:"
 }
