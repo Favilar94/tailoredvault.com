@@ -71,7 +71,16 @@ export const uploadFile = async (req, res) => {
                         }
                     });
                 }catch(error){
-                    console.log(error);
+                    res.status(404).json({ message: "Error" });
+                }
+            }else{
+                const staticPath = config.WEB_HOSTNAME + "/" + userName + "/" + fileName;
+                const staticThumbnailPath = null;
+                const values = [fileName,mbSize,fileExtension,description,staticPath,staticThumbnailPath,spectRatio,userID,privacyID];
+                try{
+                    const response =  pool.query('INSERT INTO Files (file_name,MB_size, file_extension, description, original_path, thumbnail_path, spect_ratio, user_id, privacy_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);',values)
+                }catch (errorSQL){
+                    res.status(404).json({ message: "Error" });
                 }
             }
     
