@@ -61,7 +61,7 @@ export const uploadFile = async (req, res) => {
                             spectRatio = resizeImage.height/resizeImage.width;
                             // insertar En SQL
                             const staticPath = config.WEB_HOSTNAME + "/" + userName + "/" + fileName;
-                            const staticThumbnailPath = config.WEB_HOSTNAME + "/" + userName + "/" + "thumbnails" + fileName;
+                            const staticThumbnailPath = config.WEB_HOSTNAME + "/" + userName + "/" + "thumbnails" + "/" + fileName;
                             const values = [fileName,mbSize,fileExtension,description,staticPath,staticThumbnailPath,spectRatio,userID,privacyID];
                             try{
                                 const response = await pool.query('INSERT INTO Files (file_name,MB_size, file_extension, description, original_path, thumbnail_path, spect_ratio, user_id, privacy_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);',values)
@@ -121,11 +121,19 @@ export const deleteFileById = async (req, res) => {
 
     for(const file of filePaths.rows){
         try{
-            fs.unlinkSync(file["original_path"]);
-            fs.unlinkSync(file["thumbnail_path"]);
+
+            let fullPath = file["original_path"].replace(config.WEB_HOSTNAME,"");
+            let fullPathThumb = file["thumbnail_path"].replace(config.WEB_HOSTNAME,"");
+
+            fullPath = path.join(config.savePath, "public",fullPath);
+            fullPathThumb = path.join(config.savePath, "public",fullPathThumb);
+            console.log(fullPath,fullPathThumb)
+            fs.unlinkSync(fullPath);
+            fs.unlinkSync(fullPath);
             const response = await pool.query('DELETE FROM Files WHERE file_id = $1;', [fileID]);
             res.status(204).json({ message: "Deleted" });
         }catch(err){
+            console.log(err)
             res.status(404).json({ message: "Error" });
         }
     }
