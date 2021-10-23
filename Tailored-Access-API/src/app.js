@@ -21,7 +21,7 @@ app.use(express.json());
 
 
 //Routes
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
     name: app.get("pkg").name,
     author: app.get("pkg").author,
@@ -35,7 +35,6 @@ app.use("/api/files", filesRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/relation",relationShipsRoutes);
-userRoutes
 
 //Static files
 app.use(express.static(path.join(__dirname, "public")));
