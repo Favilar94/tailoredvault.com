@@ -78,10 +78,11 @@ export const canDelete = async (req, res, next) => {
 export const isAdmin = async (req, res, next) => {
     const {sysadmin}= req.Roles;
     if(sysadmin){
-        req.relationWithUser = 1;
+        req.relationWithUser = 0;
         req.rightsAccess.push(true);
         next();
     }else{
+        req.relationWithUser = null;
         req.rightsAccess.push(false);
         next();
     }
@@ -213,7 +214,6 @@ export const profilePrivacy = async (req, res, next) => {
 
     if(response.rows[0]){
         req.profilePryvacyID = response.rows[0]["privacy_id"]
-        console.log(req.profilePryvacyID);
         next();
     }else{
         return res.status(404).json({ message: "User not found" });

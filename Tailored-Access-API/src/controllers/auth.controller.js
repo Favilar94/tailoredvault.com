@@ -4,7 +4,6 @@ import config from '../config'
 
 export const signUp = async (req, res) => {
     const {user_name,about,user_password,first_name,last_name,email,plan_id,rol_id,privacy_id} = req.body;
-    console.log(req.body)
     const values = [user_name.toLowerCase(),about,user_password,first_name,last_name,email.toLowerCase(),plan_id,rol_id,privacy_id];
 
     try{
@@ -15,7 +14,6 @@ export const signUp = async (req, res) => {
     // La base de datos valida si no existe el email ni el username Programar manejo de errores
     const responseUserID = await pool.query("SELECT user_id FROM users WHERE user_name = $1",[user_name.toLowerCase()]);
     const userID = responseUserID.rows[0]['user_id'];
-    console.log(userID)
     const token = jwt.sign({id: userID}, config.SECRET, {
         expiresIn: 86400
     })
@@ -33,7 +31,6 @@ export const signIn = async (req, res) => {
         userID = userID['user_id'];
     }
     //Si no encuentra nada es que o no existe el usuario o el password esta mal
-    console.log(userID);
     const token = jwt.sign({id: userID}, config.SECRET, {
         expiresIn: 86400
     });

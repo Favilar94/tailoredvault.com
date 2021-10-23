@@ -4,6 +4,8 @@ import pkg from "../package.json";
 import filesRoutes from "./routes/files.routes";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
+import relationShipsRoutes from "./routes/relationships.routes";
+
 const path = require("path");
 const app = express();
 
@@ -11,8 +13,7 @@ const app = express();
 app.set("pkg", pkg);
 app.set("port", 3001);
 
-app.set("views", path.join(__dirname, "views")); //Only to debug
-app.set("view engine", "ejs"); //Only to debug
+
 
 // middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -29,22 +30,11 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/apifoto", (req, res) => { //Only to debug
-  res.render("fileform"); //Only to debug
-}); //Only to debug
-
-app.get("/userform", (req, res) => { //Only to debug
-  res.render("userform"); //Only to debug
-}); //Only to debug
-
-app.get("/signin", (req, res) => { //Only to debug
-  res.render("signin"); //Only to debug
-}); //Only to debug
 
 app.use("/api/files", filesRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
-
+app.use("/api/relation",relationShipsRoutes);
 userRoutes
 
 //Static files

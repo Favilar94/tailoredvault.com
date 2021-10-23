@@ -1,4 +1,6 @@
+const path = require("path");
+
 export default {
     SECRET: 'Alejandro ia-center',
-    savePath: "C:"
+    savePath: __dirname
 }
